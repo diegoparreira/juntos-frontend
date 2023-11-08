@@ -1,15 +1,28 @@
 import axios from "axios";
 import { useState } from "react";
-import bcryptjs from "bcryptjs-react";
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import Util from "../../utils/util";
 
 export function useLoginState() {
   const [inputEmail, setEmail] = useState("");
   const [inputPassword, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const { login } = useUser();
+  const navigate = useNavigate();
 
-  const BASE_ENDPOINT = 'http://localhost:3000';
+  const BASE_ENDPOINT = "http://localhost:3003";
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    
+    if( !inputEmail || !inputPassword){
+      setError(true);
+      setErrorMessage("Os campos são obrigatórios");
+      return;
+    }
+
     try {
       // Fazer uma requisição para a API para obter o usuário e a senha em hash
       console.log(`${BASE_ENDPOINT}/users/${inputEmail}`);
@@ -17,26 +30,39 @@ export function useLoginState() {
       console.log(response);
 
       if (response.status === 200) {
-        const {email, password_hash} = response.data;
+        const userData = response.data;
+        const { email, password_hash } = userData;
+        console.log(email);
         console.log(password_hash);
         // Verificar se a senha em hash corresponde à senha inserida pelo usuário
-        const isTheSamePassword = await checkPasswordHash(inputPassword, password_hash);
+        const isTheSamePassword = await Util.checkPasswordHash(
+          inputPassword,
+          password_hash
+        );
         const isTheSameEmail = email === inputEmail;
         if (isTheSamePassword && isTheSameEmail) {
-          setLoggedIn(true);
-          alert("Login realizado com sucesso!!!");
+          login(userData);
+          setError(false);
+          navigate("/home");
         } else {
-          alert("Email ou senha não conferem");
+          setError(true);
+          setErrorMessage("Email ou senha não conferem");
         }
       }
     } catch (error) {
-      console.error("Erro ao fazer login", error);
+      const { message } = error.response.data;
+      setError(true);
+      setErrorMessage(message);
     }
   };
 
-  return { inputEmail, setEmail, inputPassword, setPassword, loggedIn, setLoggedIn, handleLogin };
+  return {
+    inputEmail,
+    setEmail,
+    inputPassword,
+    setPassword,
+    handleLogin,
+    error,
+    errorMessage,
+  };
 }
-
-const checkPasswordHash = async (password, hashPassword) => {
-  return await bcryptjs.compare(password, hashPassword);
-};
