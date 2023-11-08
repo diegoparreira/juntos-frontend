@@ -9,6 +9,7 @@ import { PrivateRoutes } from './components/PrivateRoutes';
 import SignUp from './pages/SignUp/SignUp';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdminRoutes } from './components/AdminRoutes';
 
 function App() {
 
@@ -22,8 +23,11 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route element={<PrivateRoutes />}>
                 <Route element={<Home/>} path="/home" exact/>
+              </Route>
+              <Route element={<AdminRoutes />}>
                 <Route element={<Admin/>} path="/admin" exact/>
               </Route>
+
             </Routes>
           </Router>
         </LocalizationProvider>

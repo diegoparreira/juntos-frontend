@@ -9,8 +9,9 @@ export function useHomeState(){
 
     const getAllContents = async () => {
         try {
-            console.log(`${BASE_ENDPOINT}/contents`);
-            const response = await axios.get(`${BASE_ENDPOINT}/contents`);
+            console.log(`${BASE_ENDPOINT}/contents/bycategories`);
+            const response = await axios.get(`${BASE_ENDPOINT}/contents/bycategories`);
+            console.log("Response of bycategories");
             console.log(response);
     
             return response.data;
@@ -23,6 +24,7 @@ export function useHomeState(){
         try {
             console.log(`${BASE_ENDPOINT}/categories`);
             const response = await axios.get(`${BASE_ENDPOINT}/categories`);
+            console.log("Response of categories");
             console.log(response);
     
             return response.data;
