@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const BASE_ENDPOINT = "http://localhost:3003";
 
-const useContents = () => {
+export function useContents (){
     const [contents, setContents] = useState([]);
 
     useEffect(() => {

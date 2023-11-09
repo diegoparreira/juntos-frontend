@@ -1,14 +1,11 @@
 import React, {useEffect} from 'react';
 import { useUser } from '../../context/UserContext';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useHomeState } from './HomeController';
 import NavbarApp from '../../components/Navbar';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import CardContent from '../../components/CardContent';
 import CategorySection from '../../components/CategorySection';
 
 function Home() {
-  const { logout, user } = useUser();
   const {
     contents,
     setContents,
@@ -29,11 +26,6 @@ function Home() {
     console.log(contents);
     setCategories(categories);
     console.log(categories);
-  }
-
-  const handleLogout = () => {
-    logout();
-    <Navigate to="/" />
   }
 
   return (

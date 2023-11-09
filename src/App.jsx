@@ -10,6 +10,9 @@ import SignUp from './pages/SignUp/SignUp';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { AdminRoutes } from './components/AdminRoutes';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
 
@@ -24,6 +27,7 @@ function App() {
               <Route element={<PrivateRoutes />}>
                 <Route element={<Home/>} path="/home" exact/>
               </Route>
+              {/* User dando null na hora que carrega componente */}
               <Route element={<AdminRoutes />}>
                 <Route element={<Admin/>} path="/admin" exact/>
               </Route>
