@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
-import { useUser } from '../../context/UserContext';
-import { Navigate } from 'react-router-dom';
 import { useHomeState } from './HomeController';
 import NavbarApp from '../../components/Navbar';
 import CategorySection from '../../components/CategorySection';
+import { Container } from 'react-bootstrap';
 
 function Home() {
   const {
@@ -31,12 +30,13 @@ function Home() {
   return (
     <>
       <NavbarApp />
-
-      {
-        categories.map(category => {
-          return <CategorySection category={category} contents={contents[category.name]} />
-        })
-      }
+      <Container>
+        {
+          categories.map(category => {
+            return <CategorySection category={category} contents={contents[category.name]} />
+          })
+        }
+      </Container>
     </>
   );
 }

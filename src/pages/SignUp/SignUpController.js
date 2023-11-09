@@ -10,6 +10,7 @@ export function useSignUpState() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [birthdate, setBirthdate] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { login } = useUser();
@@ -24,6 +25,7 @@ export function useSignUpState() {
       email: email,
       username: username,
       password: password,
+      avatar_url: avatarUrl,
       birthdate: birthdate.toJSON()
     }
   }
@@ -79,6 +81,8 @@ export function useSignUpState() {
     setPassword,
     birthdate,
     setBirthdate,
+    avatarUrl,
+    setAvatarUrl,
     error,
     errorMessage,
     handleSignUp

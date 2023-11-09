@@ -42,6 +42,8 @@ export default function SignUp() {
     setPassword,
     birthdate,
     setBirthdate,
+    avatarUrl,
+    setAvatarUrl,
     error,
     errorMessage,
     handleSignUp
@@ -66,7 +68,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "#45bf00" }}>
-            <Person />
+            {avatarUrl ? <Avatar imgUrl={avatarUrl} /> : <Person />}
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -143,6 +145,20 @@ export default function SignUp() {
                   autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+              {/* Avatar picture link */}
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="avatar_url"
+                  label="Url de alguma foto"
+                  type="text"
+                  id="avatar_url"
+                  autoComplete="avatar_url"
+                  value={avatarUrl}
+                  onChange={(e) => setAvatarUrl(e.target.value)}
                 />
               </Grid>
               {/* Birthdate field */}

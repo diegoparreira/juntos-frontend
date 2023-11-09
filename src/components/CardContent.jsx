@@ -9,12 +9,12 @@ export default function CardContent({content}) {
 
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" src={`http://img.youtube.com/vi/LXb3EKWsInQ/0.jpg`} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Subtitle >Tipo de conteúdo: {type}</Card.Subtitle>
         <Button variant="primary" onClick={() => setShow(true)}>Ver detalhes</Button>
-        <DetailModal show={show} content={content} setShow={setShow}/>
+        <DetailModal className="" show={show} content={content} setShow={setShow}/>
       </Card.Body>
     </Card>
   );
