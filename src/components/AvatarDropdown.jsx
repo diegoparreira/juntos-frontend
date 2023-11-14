@@ -5,15 +5,21 @@ import {
   MDBDropdownToggle,
   MDBNavbarItem
 } from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import React from "react";
 import { useUser } from "../context/UserContext";
 import { Person } from "@mui/icons-material";
 import Avatar from "./Avatar";
 
 export default function AvatarDropdown() {
-  const { user } = useUser();
+  const { user, logout } = useUser();
   const { avatar_url } = user || <Person />;
+
+  const handleLogout = () =>{
+    logout();
+    redirect('/');
+  }
+
   return (
     <MDBNavbarItem>
       <MDBDropdown>
@@ -32,7 +38,7 @@ export default function AvatarDropdown() {
             <Link to="">Perfil</Link>
           </MDBDropdownItem>
           <MDBDropdownItem>
-            <Link to="">Logout</Link>
+            <Link onClick={handleLogout}>Logout</Link>
           </MDBDropdownItem>
         </MDBDropdownMenu>
       </MDBDropdown>

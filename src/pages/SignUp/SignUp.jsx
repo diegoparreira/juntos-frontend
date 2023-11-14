@@ -30,29 +30,26 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
   const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    username,
-    setUsername,
-    password,
-    setPassword,
+    newUser,
+    setNewUser,
     birthdate,
     setBirthdate,
-    avatarUrl,
-    setAvatarUrl,
     error,
-    errorMessage,
     handleSignUp
   } = useSignUpState();
+
+  const changeValue = ((e) => {
+    console.log('Debug changeValue');
+    console.log('e.target.name: ' + e.target.name);
+    console.log('e.target.value: ' + e.target.value);
+    setNewUser({...newUser, [e.target.name]: e.target.value});
+  });
 
   const handleDateChange = (e) => {
     console.log('Debug date: ');
     console.log(e);
     setBirthdate(e);
+    setNewUser({...newUser, birthdate: e.toJSON()});
   }
 
   return (
@@ -68,7 +65,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "#45bf00" }}>
-            {avatarUrl ? <Avatar imgUrl={avatarUrl} /> : <Person />}
+            {newUser.avatar_url ? <Avatar imgUrl={newUser.avatar_url} /> : <Person />}
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -89,8 +86,8 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={newUser.firstName}
+                  onChange={changeValue}
                   autoFocus
                 />
               </Grid>
@@ -103,8 +100,8 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={newUser.lastName}
+                  onChange={changeValue}
                 />
               </Grid>
               {/* Email field */}
@@ -116,8 +113,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={newUser.email}
+                  onChange={changeValue}
                 />
               </Grid>
               {/* Username field */}
@@ -129,8 +126,8 @@ export default function SignUp() {
                   label="Username"
                   name="username"
                   autoComplete="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={newUser.username}
+                  onChange={changeValue}
                 />
               </Grid>
               {/* Password field */}
@@ -143,8 +140,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={newUser.password}
+                  onChange={changeValue}
                 />
               </Grid>
               {/* Avatar picture link */}
@@ -157,8 +154,8 @@ export default function SignUp() {
                   type="text"
                   id="avatar_url"
                   autoComplete="avatar_url"
-                  value={avatarUrl}
-                  onChange={(e) => setAvatarUrl(e.target.value)}
+                  value={newUser.avatar_url}
+                  onChange={changeValue}
                 />
               </Grid>
               {/* Birthdate field */}
@@ -175,7 +172,7 @@ export default function SignUp() {
               </Grid>
             </Grid>
             {/* Error Message */}
-            {error && <Alert severity="error">{errorMessage}</Alert>}
+            {error.error && <Alert severity="error">{error.message}</Alert>}
             <Button
               type="submit"
               fullWidth

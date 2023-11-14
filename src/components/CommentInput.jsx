@@ -1,13 +1,19 @@
 import { MDBInput } from "mdb-react-ui-kit";
 import React, { useState } from "react";
-import { useComments } from "../hooks/useComment";
+import { useUser } from "../context/UserContext";
 
-export default function CommentInput({ contentId, userId, handleNewComment }) {
-  const { newComment, setNewComment } = useComments();
-
+export default function CommentInput({ contentId, handleNewComment }) {
+  const { user } = useUser();
+  const emptyComment = {
+    content: "",
+    userId: user.id,
+    contentId: contentId
+  }
+  const [newComment, setNewComment] = useState(emptyComment);
+ 
   const handleEnter = (event) => {
     if(event.key === "Enter"){
-      handleNewComment(newComment, userId, contentId);
+      handleNewComment(newComment);
     }
   }
 
@@ -16,8 +22,8 @@ export default function CommentInput({ contentId, userId, handleNewComment }) {
       wrapperClass="mb-4"
       placeholder="Type comment..."
       label="Make Comment"
-      value={newComment}
-      onChange={(e) => setNewComment(e.target.value)}
+      value={newComment.content}
+      onChange={(e) => setNewComment({...newComment, content: e.target.value})}
       onKeyDown={handleEnter}
     />
   );
