@@ -13,6 +13,7 @@ import { AdminRoutes } from './components/AdminRoutes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Profile from './pages/Profile/Profile';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route element={<PrivateRoutes />}>
                 <Route element={<Home/>} path="/home" exact/>
+                <Route element={<Profile/>} path="/profile" exact/>
               </Route>
               {/* User dando null na hora que carrega componente */}
               <Route element={<AdminRoutes />}>

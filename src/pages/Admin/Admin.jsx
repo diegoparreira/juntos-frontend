@@ -1,16 +1,27 @@
-// import ResponsiveAppBar from '../../components/ResponsiveAppBar';
-
-import AdminOptions from "../../components/AdminOptions";
+import { useState } from "react";
+import { Col, Container } from "react-bootstrap";
 import NavbarApp from "../../components/Navbar";
-import { useUser } from "../../context/UserContext";
+import Sidebar from "../../components/Sidebar";
+import ComponentContent from "../../components/AdminPanel/ComponentContent";
 
 export default function Admin() {
-    const {user} = useUser();
+    const [selectedModel, setSelectedModel] = useState('contents');
+    const nav = (navTo) => {
+        alert('Clicou no: ' + navTo);
+        setSelectedModel(navTo)
+    };
 
     return(
         <>
             <NavbarApp />
-            <AdminOptions />
+            <Container fluid className="d-flex h-100" >
+                <Col xs={3}>
+                    <Sidebar handleChange={nav}/>
+                </Col>
+                <Col xs={9}>
+                    <ComponentContent selectedModel={selectedModel}/>
+                </Col>
+            </Container>
         </>        
     )
 }

@@ -32,13 +32,13 @@ export default function AvatarDropdown() {
         </MDBDropdownToggle>
         <MDBDropdownMenu>
           <MDBDropdownItem>
-            <Link to="">Painel Administrativo</Link>
+            <Link className="mx-1" to="/admin">Painel Administrativo</Link>
           </MDBDropdownItem>
           <MDBDropdownItem>
-            <Link to="">Perfil</Link>
+            <Link className="mx-1" to="/profile">Perfil</Link>
           </MDBDropdownItem>
           <MDBDropdownItem>
-            <Link onClick={handleLogout}>Logout</Link>
+            <Link className="mx-1" onClick={handleLogout}>Logout</Link>
           </MDBDropdownItem>
         </MDBDropdownMenu>
       </MDBDropdown>

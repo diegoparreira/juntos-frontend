@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import DetailModal from "./DetailModal";
 import { useState } from 'react';
+import Util from "../utils/util";
 
 export default function CardContent({content}) {
     const {title, type} = content;
@@ -9,7 +10,7 @@ export default function CardContent({content}) {
 
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={`http://img.youtube.com/vi/LXb3EKWsInQ/0.jpg`} />
+      <Card.Img variant="top" src={content.type === 'video' ? Util.getThumb(content.url) : null} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Subtitle >Tipo de conteúdo: {type}</Card.Subtitle>
