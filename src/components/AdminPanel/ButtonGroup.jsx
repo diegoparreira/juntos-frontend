@@ -1,19 +1,27 @@
 import React from "react";
-import { MDBBtn, MDBBtnGroup, MDBContainer } from 'mdb-react-ui-kit'
+import { MDBBtn, MDBBtnGroup } from "mdb-react-ui-kit";
 
-
-function ButtonGroup({handleSelectButton}) {
-
-    const handleClick = (event) => {
-        handleSelectButton(event.target.name);
-    }
+function ButtonGroup({ handleSelectButton, create = true, edit = true, approve = true }) {
+  const handleClick = (event) => {
+    handleSelectButton(event.target.name);
+  };
   return (
     <MDBBtnGroup className="mb-3">
-      <MDBBtn name="create" onClick={handleClick}>
-        Criar
-      </MDBBtn>
-      <MDBBtn name="edit" onClick={handleClick}>Editar</MDBBtn>
-      <MDBBtn name="approve" onClick={handleClick}>Aprovar</MDBBtn>
+      {create && (
+        <MDBBtn name="create" onClick={handleClick}>
+          Criar
+        </MDBBtn>
+      )}
+      {edit && (
+        <MDBBtn name="edit" onClick={handleClick}>
+          Editar
+        </MDBBtn>
+      )}
+      {approve && (
+        <MDBBtn name="approve" onClick={handleClick}>
+          Aprovar
+        </MDBBtn>
+      )}
     </MDBBtnGroup>
   );
 }

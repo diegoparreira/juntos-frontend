@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
-import {} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function useSignUpState() {
   const emptyUser = {
@@ -9,13 +9,14 @@ export function useSignUpState() {
     email: "",
     username: "",
     password: "",
-    avatar_url: "",
+    avatar: "",
     birthdate: ""
   }
   const [newUser, setNewUser] = useState(emptyUser);
   const [birthdate, setBirthdate] = useState("");
   const [error, setError] = useState({error: false, message: ""});
   const { createUser } = useUser();
+  const navigate = useNavigate();
 
   const handleSignUp = async (event) => {
     event.preventDefault();
@@ -27,6 +28,7 @@ export function useSignUpState() {
       if(status !== 201){
         setError({error: true, message: message});
       }
+      navigate("/home");
     } catch (error) {
       console.log(error);
       setError({error: true, message: "Erro não mapeado, consulte administrador."});

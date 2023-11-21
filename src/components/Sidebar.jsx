@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   MDBIcon,
   MDBRipple,
@@ -6,9 +6,13 @@ import {
   MDBListGroupItem,
 } from "mdb-react-ui-kit";
 import { useUser } from "../context/UserContext";
+import { useNavContext } from "../context/NavContext";
+import navValues from '../utils/navValues';
 
-export default function Sidebar({handleChange}) {
+export default function Sidebar() {
   const { user } = useUser();
+  const { nav } = useNavContext();
+  console.log(nav.navigate);
 
   return (
     <>
@@ -19,8 +23,8 @@ export default function Sidebar({handleChange}) {
             action
             name="users"
             className="border-0 border-bottom rounded rounded"
-            disabled={user.type === 'admin'}
-            onClick={(e) => handleChange(e.target.name)}
+            disabled={user.type !== 'admin'}
+            onClick={() => nav.navigate(navValues.users)}
           >
             <MDBIcon fas icon="user-alt me-3" />
             Usuários
@@ -34,7 +38,7 @@ export default function Sidebar({handleChange}) {
             name="contents"
             className="border-0 border-bottom rounded"
             aria-current="true"
-            onClick={(e) => handleChange(e.target.name)}
+            onClick={() => nav.navigate(navValues.contents)}
           >
             <MDBIcon fas icon="align-justify me-3" />
             Conteúdos
@@ -47,7 +51,7 @@ export default function Sidebar({handleChange}) {
             action
             name="categories"
             className="border-0 border-bottom rounded"
-            onClick={(e) => handleChange(e.target.name)}
+            onClick={() => nav.navigate(navValues.categories)}
           >
             <MDBIcon fas icon="align-justify me-3" />
             Categorias
@@ -60,7 +64,7 @@ export default function Sidebar({handleChange}) {
             action
             name="comments"
             className="border-0 border-bottom rounded"
-            onClick={(e) => handleChange(e.target.name)}
+            onClick={() => nav.navigate(navValues.comments)}
           >
             <MDBIcon fas icon="align-justify me-3" />
             Comentários
@@ -74,7 +78,7 @@ export default function Sidebar({handleChange}) {
             action
             name="answers"
             className="border-0 border-bottom rounded"
-            onClick={(e) => handleChange(e.target.name)}
+            onClick={() => nav.navigate(navValues.answers)}
           >
             <MDBIcon fas icon="align-justify me-3" />
             Respostas

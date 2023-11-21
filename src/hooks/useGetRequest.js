@@ -5,9 +5,9 @@ const BASE_URL = "http://localhost:3003/";
 
 const useGetRequest = (endpoint) => {
   
-    const get = useCallback(async () => {
+    const get = useCallback(async (resource = '') => {
       try {
-        const URL = BASE_URL + endpoint;
+        const URL = BASE_URL + endpoint + resource;
         const rsp = await axios.get(URL);
         return rsp;
       } catch (error) {

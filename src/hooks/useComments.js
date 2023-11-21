@@ -25,12 +25,7 @@ export function useComments (contentId){
     const handleNewComment = async (newComment) => {
         try {
             const response = await post(newComment);
-
-            if(response.status === 201){
-                console.log('Comentário criado com sucesso');
-                // Como lidar com o fato de que o comentário precisa ser aprovado
-
-            }
+            return response;
         } catch (error) {
             console.error('Erro na criação do comentário')
         }

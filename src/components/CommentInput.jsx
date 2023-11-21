@@ -13,7 +13,13 @@ export default function CommentInput({ contentId, handleNewComment }) {
  
   const handleEnter = (event) => {
     if(event.key === "Enter"){
-      handleNewComment(newComment);
+      const result = handleNewComment(newComment);
+      if(result.status === 200){
+        alert('Comentário enviado para aprovação');
+      }else {
+        alert('Erro ao criar o comentário');
+      }
+      setNewComment(emptyComment);
     }
   }
 

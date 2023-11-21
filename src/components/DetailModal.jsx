@@ -10,9 +10,9 @@ export default function DetailModal({ show, content, setShow }) {
       <Modal.Header closeButton>
         <Modal.Title>{content.title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{justifyContent: 'center'}}>
-        {content.type === 'video' && <VideoPlayer link={content.url}/>}
-        {content.type === 'pdf' && <PDFViewer link={content.url}/>}
+      <Modal.Body style={{ justifyContent: "center" }}>
+        {content.type === "video" && <VideoPlayer link={content.url} />}
+        {content.type === "pdf" && <PDFViewer link={content.url} />}
         <CommentList contentId={content.id} />
       </Modal.Body>
     </Modal>

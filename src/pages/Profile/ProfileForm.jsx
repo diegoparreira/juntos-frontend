@@ -19,10 +19,10 @@ import { Alert } from "react-bootstrap";
 
 function ProfileForm() {
   const { user } = useUser();
-  const { avatar_url } = user || <Person />;
+  const { avatar } = user || <Person />;
   const [newData, setNewData] = useState({});
   const [statusResponse, setStatusResponse] = useState({});
-  const { post } = usePostRequest("users/password");
+  const { post } = usePostRequest("users/");
 
   const changeValue = (e) => {
     setNewData({ ...newData, [e.target.name]: e.target.value });
@@ -48,7 +48,7 @@ function ProfileForm() {
       email: user.email,
       password: newpassword,
     };
-    const res = await post(body);
+    const res = await post(body, 'password');
     if (res.status === 200) {
       setStatusResponse({
         status: "success",
@@ -58,6 +58,25 @@ function ProfileForm() {
     console.log(res);
   };
 
+  const handleMentor = async () => {
+    alert('Solicitou para virar mentor');
+    const body = {
+      id: user.id
+    }
+    const res = await post(body, 'mentor');
+    if(res.status === 201){
+      setStatusResponse({
+        status: "success",
+        message: "Solicitação efetuada com sucesso",
+      });
+    }else {
+      setStatusResponse({
+        status: "danger",
+        message: "Algo de errado aconteceu com a solicitação",
+      });
+    }
+  }
+
   return (
     <MDBContainer className="container py-2 h-100">
       <MDBRow className="justify-content-center align-items-center h-100">
@@ -66,7 +85,7 @@ function ProfileForm() {
             <MDBCardBody className="text-center">
               <div className="mt-3 mb-4">
                 <MDBCardImage
-                  src={avatar_url}
+                  src={avatar}
                   className="rounded-circle"
                   fluid
                   style={{ width: "100px" }}
@@ -105,6 +124,9 @@ function ProfileForm() {
               </MDBInputGroup>
             </MDBCardBody>
           </MDBCard>
+        {user.type === 'student' && (
+          <MDBBtn onClick={handleMentor}>Pedir para se tornar mentor</MDBBtn>
+        )}
         </MDBCol>
       </MDBRow>
     </MDBContainer>

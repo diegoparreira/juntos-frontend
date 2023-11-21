@@ -17,7 +17,7 @@ export default function CategorySection({ category, contents }) {
       </h1>
       <Swiper
         slidesPerView={4}
-        spaceBetween={10}
+        spaceBetween={20}
         pagination={{
           clickable: true,
         }}

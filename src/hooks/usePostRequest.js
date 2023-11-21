@@ -5,14 +5,14 @@ const BASE_URL = "http://localhost:3003/";
 
 const usePostRequest = (endpoint) => {
   
-    const post = useCallback(async (body) => {
+    const post = useCallback(async (body, resource = '') => {
       try {
         const header = {
             headers: {
               'Content-Type': 'application/json',
             }
         };
-        const URL = BASE_URL + endpoint;
+        const URL = BASE_URL + endpoint + resource;
         const result = await axios.post(URL, body, header);
         const {status, data} = result;
         return {status: status, data: data, message: "Request success", code: null};

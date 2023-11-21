@@ -13,7 +13,7 @@ import Avatar from "./Avatar";
 
 export default function AvatarDropdown() {
   const { user, logout } = useUser();
-  const { avatar_url } = user || <Person />;
+  const { avatar } = user || <Person />;
 
   const handleLogout = () =>{
     logout();
@@ -28,7 +28,7 @@ export default function AvatarDropdown() {
           className="nav-link d-flex align-items-center"
           href="#"
         >
-          <Avatar imgUrl={avatar_url} />
+          <Avatar imgUrl={avatar} />
         </MDBDropdownToggle>
         <MDBDropdownMenu>
           <MDBDropdownItem>

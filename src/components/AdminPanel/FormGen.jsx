@@ -5,18 +5,17 @@ import Form from "react-bootstrap/Form";
 import usePostRequest from "../../hooks/usePostRequest";
 import { useUser } from "../../context/UserContext";
 
-function FormGen({ data, selectedModel }) {
+function FormGen({ data, selectedModel, categories }) {
   const { user } = useUser();
   const [newData, setData] = useState({ userId: user.id });
   const [statusResponse, setStatusResponse] = useState({});
   const { post } = usePostRequest(selectedModel);
-  console.log("Debug data in FormGen");
-  console.log(data);
 
   const changeValue = (e) => {
     console.log(e);
     setData({ ...newData, [e.target.name]: e.target.value });
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,7 +74,9 @@ function FormGen({ data, selectedModel }) {
             name={element.name}
           >
             <option>Escolha uma opção</option>
-            {element.options.map((option, index) => handleOption(option, index))}
+            {element.options.map((option, index) =>
+              handleOption(option, index)
+            )}
           </Form.Select>
         </FloatingLabel>
       );
@@ -84,7 +85,11 @@ function FormGen({ data, selectedModel }) {
 
   const handleOption = (option, index) => {
     console.log(option);
-    return <option key={option.id} value={index}>{option.name}</option>;
+    return (
+      <option key={option.id} value={index}>
+        {option.name}
+      </option>
+    );
   };
 
   const handleInputList = () => {

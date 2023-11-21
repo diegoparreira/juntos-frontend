@@ -65,7 +65,7 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "#45bf00" }}>
-            {newUser.avatar_url ? <Avatar imgUrl={newUser.avatar_url} /> : <Person />}
+            <Person />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -149,12 +149,12 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="avatar_url"
+                  name="avatar"
                   label="Url de alguma foto"
                   type="text"
-                  id="avatar_url"
-                  autoComplete="avatar_url"
-                  value={newUser.avatar_url}
+                  id="avatar"
+                  autoComplete="avatar"
+                  value={newUser.avatar}
                   onChange={changeValue}
                 />
               </Grid>

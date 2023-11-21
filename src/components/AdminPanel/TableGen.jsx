@@ -44,6 +44,7 @@ export default function TableGen({selectedModel, approve}) {
     setTimeout(() => {
       setStatusResponse({});
     }, 1000);
+    // Adicionar conteúdos aprovados a lista de conteúdos
   }
 
   useEffect(() => {

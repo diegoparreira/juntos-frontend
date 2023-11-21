@@ -59,3 +59,13 @@
   height: 100%;
   object-fit: cover;
 }
+
+.card-img {
+  max-width: 288px;
+  max-height: 216px;
+  padding: 5px;
+}
+
+.pdf-thumb {
+  max-height: '170px';
+}

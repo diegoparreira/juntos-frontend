@@ -16,7 +16,7 @@ export default function Comment({ comment }) {
         <div className="d-flex flex-start">
           <MDBCardImage
             className="rounded-circle shadow-1-strong me-3"
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
+            src={User.avatar}
             alt="avatar"
             width="65"
             height="65"
