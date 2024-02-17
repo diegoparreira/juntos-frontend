@@ -12,8 +12,8 @@ function Answer({selectedModel}) {
   }
   return (
     <MDBContainer className='mt-3'>
-        <ButtonGroup handleSelectButton={handleSelectButton} edit={false} create={false}/>
-        <MDBTypography variant='h2'>{(selectedModel).toUpperCase()}</MDBTypography>
+        <ButtonGroup handleSelectButton={handleSelectButton} edit={false} create={false} approve={false}/>
+        <MDBTypography variant='h2'>Respostas</MDBTypography>
         <CreateComponent clicked={selectedButton} selectedModel={selectedModel} />
     </MDBContainer>
   )

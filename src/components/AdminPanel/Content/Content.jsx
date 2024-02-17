@@ -16,8 +16,8 @@ function Content({selectedModel}) {
   return (
     <MDBContainer className='mt-3'>
         <ButtonGroup handleSelectButton={handleSelectButton} />
-        <MDBTypography variant='h2'>{(selectedModel).toUpperCase()}</MDBTypography>
-        <CreateComponent clicked={selectedButton} selectedModel={selectedModel} categories={categories} />
+        <MDBTypography variant='h2'>Conteúdos</MDBTypography>
+        <CreateComponent clicked={selectedButton} selectedModel={selectedModel} />
     </MDBContainer>
   )
 }

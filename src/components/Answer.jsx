@@ -8,7 +8,7 @@ export default function Answer({answer}) {
   return (
     <MDBRow>
       <MDBCol>
-        <div className="d-flex flex-end">
+        <div className="d-flex flex-end mt-2">
           <div className="flex-grow-1 flex-shrink-1">
             <div>
               <div className="d-flex justify-content-between align-items-center">
@@ -22,7 +22,7 @@ export default function Answer({answer}) {
           </div>
           <MDBCardImage
             className="rounded-circle shadow-1-strong ms-3"
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
+            src={User.avatar}
             alt="avatar"
             width="65"
             height="65"

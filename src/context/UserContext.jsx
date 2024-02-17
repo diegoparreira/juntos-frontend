@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import usePostRequest from '../hooks/usePostRequest';
+import { redirect } from 'react-router-dom';
 
 const UserContext = createContext();
 
@@ -19,6 +20,7 @@ export const UserProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
+    redirect("/");
   };
 
   const createUser = async (newUser) => {

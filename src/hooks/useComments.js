@@ -25,6 +25,7 @@ export function useComments (contentId){
     const handleNewComment = async (newComment) => {
         try {
             const response = await post(newComment);
+            console.log(response);
             return response;
         } catch (error) {
             console.error('Erro na criação do comentário')

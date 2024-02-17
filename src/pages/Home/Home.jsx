@@ -4,7 +4,6 @@ import CategorySection from "../../components/CategorySection";
 import { Container } from "react-bootstrap";
 import { useContents } from "../../hooks/useContents";
 import { useCategories } from "../../hooks/useCategories";
-import Chat from "../../components/Chat/Chat";
 
 function Home() {
   const { contents } = useContents();
@@ -13,7 +12,7 @@ function Home() {
   return (
     <>
       <NavbarApp />
-      <Container>
+      <Container className="my-3">
         {categories.map((category) => {
           return (
             <CategorySection
@@ -23,7 +22,6 @@ function Home() {
           );
         })}
       </Container>
-      <Chat />
     </>
   );
 }

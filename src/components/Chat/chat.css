@@ -104,4 +104,17 @@
 
 #chat-section {
     background-color: #eee;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 30%;
+    z-index: 1000; /* Garante que o chat fique sobreposto */
+    transition: transform 0.3s ease-in-out;
+}
+
+.message-list {
+  max-height: 300px; /* Altura máxima do MessageList (menos o ChatInput) */
+  overflow-y: auto; /* Adiciona scrollbar apenas no eixo Y se necessário */
+  padding-bottom: 50px; /* Espaço para o ChatInput (altura estimada do ChatInput) */
+  padding-right: 10px; /* Adiciona um espaçamento interno para a scrollbar não sobrepor o conteúdo */
 }

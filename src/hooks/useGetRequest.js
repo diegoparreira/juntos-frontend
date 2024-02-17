@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useCallback} from "react";
 // Criar variáveis de ambiente
-const BASE_URL = "http://localhost:3003/";
+const BASE_URL = process.env.REACT_APP_BASE_API;
 
 const useGetRequest = (endpoint) => {
   

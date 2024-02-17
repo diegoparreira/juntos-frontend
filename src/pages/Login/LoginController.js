@@ -5,19 +5,22 @@ import { useNavigate } from "react-router-dom";
 import Util from "../../utils/util";
 
 export function useLoginState() {
-  const [inputEmail, setEmail] = useState("");
-  const [inputPassword, setPassword] = useState("");
+  const [data, setData] = useState({email: '', password: ''});
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { login } = useUser();
   const navigate = useNavigate();
 
-  const BASE_ENDPOINT = "http://localhost:3003";
+  const handleChangeData = (event) => {
+    setData({...data, [event.target.name]: event.target.value});
+  }
+
+  const BASE_ENDPOINT = process.env.REACT_APP_BASE_API;
 
   const handleLogin = async (event) => {
     event.preventDefault();
     
-    if( !inputEmail || !inputPassword){
+    if( !data.email || !data.password){
       setError(true);
       setErrorMessage("Os campos são obrigatórios");
       return;
@@ -25,15 +28,15 @@ export function useLoginState() {
 
     try {
       // Fazer uma requisição para a API para obter o usuário e a senha em hash
-      console.log(`${BASE_ENDPOINT}/users/${inputEmail}`);
-      const response = await axios.get(`${BASE_ENDPOINT}/users/${inputEmail}`);
-      console.log(response);
+      const resource = "users/";
+      const inputEmail = data.email;
+      const inputPassword = data.password;
+      const response = await axios.get(`${BASE_ENDPOINT}${resource}${inputEmail}`);
 
       if (response.status === 200) {
         const userData = response.data;
         const { email, password_hash } = userData;
-        console.log(email);
-        console.log(password_hash);
+
         // Verificar se a senha em hash corresponde à senha inserida pelo usuário
         const isTheSamePassword = await Util.checkPasswordHash(
           inputPassword,
@@ -57,10 +60,8 @@ export function useLoginState() {
   };
 
   return {
-    inputEmail,
-    setEmail,
-    inputPassword,
-    setPassword,
+    data,
+    handleChangeData,
     handleLogin,
     error,
     errorMessage,

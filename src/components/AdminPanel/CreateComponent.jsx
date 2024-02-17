@@ -2,7 +2,7 @@ import TableGen from './TableGen';
 import CategoryForm from './Category/CategoryForm';
 import ContentForm from './Content/ContentForm';
 
-const checkComponentToRender = (clicked, selectedModel, categories) => {
+const checkComponentToRender = (clicked, selectedModel) => {
     if(clicked.localeCompare('create') === 0 && selectedModel === 'contents'){
         return (<ContentForm />);
     }

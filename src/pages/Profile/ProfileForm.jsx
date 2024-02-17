@@ -56,6 +56,7 @@ function ProfileForm() {
       });
     }
     console.log(res);
+    setNewData({});
   };
 
   const handleMentor = async () => {
@@ -75,6 +76,29 @@ function ProfileForm() {
         message: "Algo de errado aconteceu com a solicitação",
       });
     }
+    setNewData({});
+  }
+
+  const handleChangeAvatar = async () => {
+    alert('Solicitou para alterar avatar');
+    console.log(newData.newAvatar)
+    const body = {
+      id: user.id,
+      avatar: newData.newAvatar
+    }
+    const res = await post(body, 'avatar');
+    if(res.status === 200){
+      setStatusResponse({
+        status: "success",
+        message: "Avatar alterado com sucesso",
+      });
+    }else {
+      setStatusResponse({
+        status: "danger",
+        message: "Algo de errado aconteceu com a solicitação",
+      });
+    }
+    setNewData({});
   }
 
   return (
@@ -93,7 +117,7 @@ function ProfileForm() {
               </div>
               <MDBTypography tag="h3">{user.fullName}</MDBTypography>
               <MDBTypography tag="h6">{`Tipo de usuário: ${user.type}`}</MDBTypography>
-              <label className="form-label">Alterar senha</label>
+              <label className="form-label mt-3">Alterar senha</label>
               {statusResponse.status && (
                 <Alert variant={statusResponse.status}>
                   {statusResponse.message}
@@ -119,6 +143,23 @@ function ProfileForm() {
                   onChange={changeValue}
                 />
                 <MDBBtn className="mt-3" onClick={handleSubmit}>
+                  Confirmar
+                </MDBBtn>
+              </MDBInputGroup>
+              <label className="form-label mt-3">Alterar avatar</label>
+              {statusResponse.status && (
+                <Alert variant={statusResponse.status}>
+                  {statusResponse.message}
+                </Alert>
+              )}
+              <MDBInputGroup className="d-flex flex-column">
+                <MDBInput
+                  label="Novo avatar"
+                  type="text"
+                  name="newAvatar"
+                  onChange={changeValue}
+                />
+                <MDBBtn className="mt-3" onClick={handleChangeAvatar}>
                   Confirmar
                 </MDBBtn>
               </MDBInputGroup>

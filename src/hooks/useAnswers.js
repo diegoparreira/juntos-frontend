@@ -5,7 +5,7 @@ import usePostRequest from "./usePostRequest";
 
 export function useAnswers (commentId){
     const [answers, setAnswers] = useState([]);
-    const { get } = useGetRequest('answers/' + contentId);
+    const { get } = useGetRequest('answers/' + commentId);
     const { post } = usePostRequest('answers/');
 
     useEffect(() => {
@@ -28,9 +28,7 @@ export function useAnswers (commentId){
             const response = await post(newAnswer);
 
             if(response.status === 201){
-                console.log('Resposta criada com sucesso');
-                // Como lidar com o fato de que o comentário precisa ser aprovado
-
+                console.log('Resposta enviada para aprovação');
             }
         } catch (error) {
             console.error('Erro na criação da resposta');

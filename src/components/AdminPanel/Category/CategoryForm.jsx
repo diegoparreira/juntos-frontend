@@ -7,11 +7,16 @@ import InputColor from "react-input-color";
 function CategoryForm() {
   const { create } = useCategories();
   const { user } = useUser();
-  const [newCategory, setNewCategory] = useState({ userId: user.id });
+  const emptyCategory = {
+    userId: user ? user.id : "",
+    name: "",
+    color: "#fff",
+  };
+  const [newCategory, setNewCategory] = useState(emptyCategory);
+  const [validated, setValidated] = useState(false);
   const [statusResponse, setStatusResponse] = useState(null);
 
   const changeValue = (e) => {
-    console.log(e);
     setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
   };
 
@@ -21,6 +26,12 @@ function CategoryForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+      setValidated(true);
+      return;
+    }
     const result = await create(newCategory);
     if (result.status === 201) {
       setStatusResponse({
@@ -36,7 +47,7 @@ function CategoryForm() {
   };
 
   return (
-    <Form onSubmit={(e) => handleSubmit(e)}>
+    <Form className="w-50" validated={validated} onSubmit={(e) => handleSubmit(e)}>
       {statusResponse && (
         <Alert variant={statusResponse.status}>{statusResponse.message}</Alert>
       )}
@@ -47,24 +58,22 @@ function CategoryForm() {
           placeholder="Digite o nome da categoria"
           value={newCategory.name}
           onChange={(e) => changeValue(e)}
+          required
         />
+        <Form.Control.Feedback type="invalid">
+          Digite um nome para a categoria
+        </Form.Control.Feedback>
       </Form.Group>
-      <div>
-        <InputColor
-          initialValue="#5e72e4"
+      <Form.Group className="d-flex flex-column align-items-center mb-3">
+        <Form.Label>Escolha uma cor</Form.Label>
+        <Form.Control
+          as={InputColor}
+          initialValue="#000"
           onChange={(e) => changeColor(e)}
           placement="right"
           name="color"
         />
-        <div
-          style={{
-            width: 50,
-            height: 50,
-            marginTop: 20,
-            // backgroundColor: newData.color.rgba,
-          }}
-        />
-      </div>
+      </Form.Group>
       <Button variant="primary" type="submit">
         Confirmar
       </Button>

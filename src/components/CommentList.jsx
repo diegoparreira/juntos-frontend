@@ -17,17 +17,17 @@ export default function CommentList({contentId}) {
   const { comments, handleNewComment } = useComments(contentId);
 
   return (
-    <section className="gradient-custom vh-100">
+    <section className="gradient-custom vh-100 w-100">
       <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
         <MDBRow className="justify-content-center">
-          <MDBCol md="12" lg="10" xl="8">
+          <MDBCol>
             <MDBCard>
               <MDBCardBody className="p-4">
                 <MDBTypography tag="h4" className="text-center mb-4 pb-2">
                   Comentários
                 </MDBTypography>
                 <CommentInput contentId={contentId} handleNewComment={handleNewComment}/>
-                <MDBRow>
+                <MDBRow style={{position: 'relative', maxHeight: '400px', marginTop: '.5rem', overflow: 'auto'}}>
                   {comments.map((comment) => (
                     <Comment comment={comment} />
                   ))}

@@ -14,33 +14,14 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useLoginState } from "./LoginController";
 import { Person } from "@mui/icons-material";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Logo from "../../components/Logo";
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
   const {
-    email,
-    setEmail,
-    password,
-    setPassword,
+    data,
+    handleChangeData,
     handleLogin,
     error,
     errorMessage,
@@ -58,17 +39,13 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "#45bf00" }}>
-            <Person />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          <Logo />
           <Box
             component="form"
-            onSubmit={event => handleLogin(event)}
+            onSubmit={(event) => handleLogin(event)}
             noValidate
             sx={{ mt: 1 }}
+            className="mt-5"
           >
             {/* Email field */}
             <TextField
@@ -76,12 +53,12 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={data.email}
+              onChange={handleChangeData}
             />
             {/* Password field */}
             <TextField
@@ -89,12 +66,12 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Senha"
               type="password"
               id="password"
-              value={password}
+              value={data.password}
               autoComplete="current-password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChangeData}
             />
             <Button
               type="submit"
@@ -102,18 +79,17 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Login
             </Button>
             {/* Error Message */}
             {error && <Alert severity="error">{errorMessage}</Alert>}
-            <Grid item textAlign={"center"} marginTop={"10px"} >
+            <Grid item textAlign={"center"} marginTop={"10px"}>
               <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {"Não tem uma conta? Cadastre-se"}
               </Link>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

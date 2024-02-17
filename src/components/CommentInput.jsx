@@ -11,10 +11,10 @@ export default function CommentInput({ contentId, handleNewComment }) {
   }
   const [newComment, setNewComment] = useState(emptyComment);
  
-  const handleEnter = (event) => {
+  const handleEnter = async (event) => {
     if(event.key === "Enter"){
-      const result = handleNewComment(newComment);
-      if(result.status === 200){
+      const result = await handleNewComment(newComment);
+      if(result.status === 201){
         alert('Comentário enviado para aprovação');
       }else {
         alert('Erro ao criar o comentário');

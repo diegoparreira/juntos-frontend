@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { MDBCol, MDBIcon, MDBRow, MDBCardImage } from "mdb-react-ui-kit";
 import Answer from "./Answer";
 import Util from "../utils/util"; 
+import AnswerInput from "./AnswerInput";
+import { useAnswers } from "../hooks/useAnswers";
 
 export default function Comment({ comment }) {
-  console.log("Debug Comment Component");
-  console.log(comment);
-  console.log(comment.User);
-  console.log(comment.Answers);
   const { User } = comment;
   const { Answers } = comment;
+  const [showReply, setShowReply] = useState(false);
+
   return (
     <MDBRow>
       <MDBCol>
-        <div className="d-flex flex-start">
+        <div className="d-flex flex-start mt-2">
           <MDBCardImage
             className="rounded-circle shadow-1-strong me-3"
             src={User.avatar}
@@ -28,15 +28,16 @@ export default function Comment({ comment }) {
                   {User.fullName}{" "}
                   <span className="small">{Util.formatDate(comment.createdAt)}</span>
                 </p>
-                <a href="#!">
+                <a href="#!" onClick={() => setShowReply(!showReply)}>
                   <MDBIcon fas icon="reply fa-xs" />
-                  <span className="small"> reply</span>
+                  <span className="small"> Responder</span>
                 </a>
               </div>
               <p className="small mb-0">{comment.content}</p>
             </div>
+            {showReply && <AnswerInput commentId={comment.id} />} 
 
-            <div className="d-flex flex-start mt-4">
+            <div className="d-flex flex-column flex-start mt-4">
               {Answers &&
                 Answers.map((answer) => {
                   return <Answer answer={answer} />;

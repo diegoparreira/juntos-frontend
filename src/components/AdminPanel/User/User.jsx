@@ -16,8 +16,9 @@ function User({ selectedModel }) {
         handleSelectButton={handleSelectButton}
         create={false}
         edit={false}
+        approve={false}
       />
-      <MDBTypography variant="h2">{selectedModel.toUpperCase()}</MDBTypography>
+      <MDBTypography variant="h2">Usuários</MDBTypography>
       <CreateComponent clicked={selectedButton} selectedModel={selectedModel} />
     </MDBContainer>
   );

@@ -11,9 +11,9 @@ function Category({selectedModel}) {
     setSelectedButton(clicked);
   }
   return (
-    <MDBContainer className='mt-3'>
+    <MDBContainer className='mt-3 d-flex flex-column align-items-center'>
         <ButtonGroup handleSelectButton={handleSelectButton} />
-        <MDBTypography variant='h2'>{(selectedModel).toUpperCase()}</MDBTypography>
+        <MDBTypography variant='h2'>Categorias</MDBTypography>
         <CreateComponent clicked={selectedButton} selectedModel={selectedModel} />
     </MDBContainer>
   )

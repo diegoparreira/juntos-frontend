@@ -6,6 +6,6 @@ export const AdminRoutes = () => {
     const {user} = useUser();
     console.log(user);
     return(
-        user.type !== 'student' ? <Outlet/> : <Navigate to="/home" />
+        (user && user.type !== 'student') ? <Outlet/> : <Navigate to="/home" />
     )
 }

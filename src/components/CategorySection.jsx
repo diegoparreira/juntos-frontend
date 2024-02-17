@@ -12,18 +12,31 @@ export default function CategorySection({ category, contents }) {
   console.log(contents);
   return (
     <Row>
-      <h1 className="mb-3" style={{ color: category.color }}>
+      <h1 className="mb-5" style={{ color: category.color }}>
         {category.name}
       </h1>
       <Swiper
-        slidesPerView={4}
-        spaceBetween={20}
+        spaceBetween={10}
         pagination={{
           clickable: true,
         }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
+        }}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          600: {
+            slidesPerView: 2,
+          },
+          900: {
+            slidesPerView: 3
+          },
+          1200: {
+            slidesPerView: 4
+          }
         }}
         modules={[Pagination]}
         className="mySwiper"

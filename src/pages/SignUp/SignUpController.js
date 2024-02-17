@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from 'react-router-dom';
+import dayjs from "dayjs";
 
 export function useSignUpState() {
   const emptyUser = {
@@ -13,7 +14,7 @@ export function useSignUpState() {
     birthdate: ""
   }
   const [newUser, setNewUser] = useState(emptyUser);
-  const [birthdate, setBirthdate] = useState("");
+  const [birthdate, setBirthdate] = useState(dayjs());
   const [error, setError] = useState({error: false, message: ""});
   const { createUser } = useUser();
   const navigate = useNavigate();

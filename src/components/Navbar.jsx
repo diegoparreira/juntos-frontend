@@ -1,9 +1,9 @@
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo-oficial.png';
 import AvatarDropdown from './AvatarDropdown';
+import SearchBar from './SearchBar';
 
 export default function NavbarApp() {
     return (
@@ -12,6 +12,7 @@ export default function NavbarApp() {
           <Navbar.Brand as={Link} to="/home">
             <img src={logo} width="214px" height="52px" alt="Juntos Logotipo" />
           </Navbar.Brand>
+          <SearchBar />
           <AvatarDropdown />
         </Container>
       </Navbar>

@@ -2,29 +2,9 @@ import React from "react";
 import { Avatar, Button, TextField, Link, Grid, Box, Typography, Container, Alert } from '@mui/material/';
 import CssBaseline from "@mui/material/CssBaseline";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Person } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useSignUpState } from "./SignUpController";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import Logo from "../../components/Logo";
 
 const defaultTheme = createTheme();
 
@@ -39,9 +19,6 @@ export default function SignUp() {
   } = useSignUpState();
 
   const changeValue = ((e) => {
-    console.log('Debug changeValue');
-    console.log('e.target.name: ' + e.target.name);
-    console.log('e.target.value: ' + e.target.value);
     setNewUser({...newUser, [e.target.name]: e.target.value});
   });
 
@@ -64,17 +41,12 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "#45bf00" }}>
-            <Person />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+          <Logo />
           <Box
             component="form"
             noValidate
             onSubmit={event => handleSignUp(event)}
-            sx={{ mt: 3 }}
+            className="mt-5"
           >
             <Grid container spacing={2}>
               {/* Firstname field */}
@@ -110,7 +82,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Email"
                   name="email"
                   autoComplete="email"
                   value={newUser.email}
@@ -179,18 +151,17 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Cadastrar
             </Button>
             <Grid container justifyContent="center">
               <Grid item>
                 <Link href="/" variant="body2">
-                  Already have an account? Sign in
+                  Já possui uma conta? Faça o login
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
