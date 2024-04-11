@@ -13,7 +13,7 @@ export function useComments (contentId){
                 const response = await get();
                 console.log(response);
         
-                setComments(response.data);
+                setComments(response.data.data);
             } catch (error) {
                 console.log(error);
                 setComments(null);

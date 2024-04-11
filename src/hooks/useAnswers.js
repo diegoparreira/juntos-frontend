@@ -14,7 +14,7 @@ export function useAnswers (commentId){
                 const response = await get();
                 console.log(response);
         
-                setAnswers(response.data);
+                setAnswers(response.data.data);
             } catch (error) {
                 console.log(error);
                 setAnswers(null);

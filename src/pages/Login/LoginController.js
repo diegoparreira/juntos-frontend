@@ -34,7 +34,7 @@ export function useLoginState() {
       const response = await axios.get(`${BASE_ENDPOINT}${resource}${inputEmail}`);
 
       if (response.status === 200) {
-        const userData = response.data;
+        const userData = response.data.data;
         const { email, password_hash } = userData;
 
         // Verificar se a senha em hash corresponde à senha inserida pelo usuário

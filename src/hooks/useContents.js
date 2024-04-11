@@ -13,7 +13,7 @@ export function useContents (){
                 const response = await get();
                 console.log(response);
         
-                setContents(response.data);
+                setContents(response.data.data);
             } catch (error) {
                 console.log(error);
                 setContents(null);

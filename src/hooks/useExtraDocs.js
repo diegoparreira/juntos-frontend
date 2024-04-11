@@ -11,7 +11,7 @@ export function useExtraDocs (contentId){
                 const response = await get();
                 console.log(response);
         
-                setExtraDocs(response.data);
+                setExtraDocs(response.data.data);
             } catch (error) {
                 console.log(error);
                 setExtraDocs(null);

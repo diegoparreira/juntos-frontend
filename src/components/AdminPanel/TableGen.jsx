@@ -53,8 +53,8 @@ export default function TableGen({ selectedModel, approve }) {
         const response = await get();
         console.log(response);
 
-        setData(response.data);
-        setKeys(Object.keys(response.data[0]));
+        setData(response.data.data);
+        setKeys(Object.keys(response.data.data[0]));
         console.log(keys);
       } catch (error) {
         console.log(error);
